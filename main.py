@@ -1,5 +1,6 @@
 # this allows us to use code from the open-source pygame library throughout this file
 import pygame
+import sys
 from constants import *
 from circleshape import *
 from player import *
@@ -35,6 +36,9 @@ def main():
         pygame.Surface.fill(screen, color="black")
         for update in updatable:
             update.update(dt)
+        for asteroid in asteroids:
+            if asteroid.collision_check(player1) == True:
+                sys.exit("Game Over!")
         for draw in drawable:
             draw.draw(screen)
         pygame.display.flip()
