@@ -41,11 +41,12 @@ def main():
             update.update(dt)
         for asteroid in asteroids:
             if asteroid.collision_check(player1) == True:
-                sys.exit("Game Over!")
+                sys.exit(f"Game Over!  Your score was {player1.score}")
             for shot in shots:
                 if asteroid.collision_check(shot) == True:
                     asteroid.split()
                     shot.kill()
+                    player1.inc_score()
         for draw in drawable:
             draw.draw(screen)
         pygame.display.flip()
